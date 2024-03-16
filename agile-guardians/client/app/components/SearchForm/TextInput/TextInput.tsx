@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import errorImg from '../../../public/error.svg'
+import errorImg from '../../../../public/error.svg'
 
 const TextInput = () => {
   return (
@@ -11,7 +11,7 @@ const TextInput = () => {
         type="text"
         id="search"
         autoComplete="off"
-        className="h-[48px] w-[320px] cursor-pointer rounded-lg border border-placeholder px-4 py-3 font-semibold text-input focus:border-inputFocus focus:outline-none"
+        className="h-[48px] w-[320px] cursor-pointer rounded-lg border border-placeholder px-4 py-3 font-semibold text-input focus:border-2 focus:border-inputFocus focus:outline-none focus:placeholder:text-input"
         placeholder="Wpisz nazwę produktu"
       />
       <div className="grid h-[32px] w-[320px] items-center rounded-lg bg-errorLight pl-3">

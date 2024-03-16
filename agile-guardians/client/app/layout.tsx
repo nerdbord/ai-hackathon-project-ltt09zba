@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl">
-      <body className={`${source_pro.className} bg-background`}>
+      <body className={`${source_pro.className} bg-background pb-5`}>
         <LogoHeader />
         {children}
       </body>

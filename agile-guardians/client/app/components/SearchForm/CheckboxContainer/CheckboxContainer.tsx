@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { PropsWithChildren } from 'react'
-import errorImg from '../../../public/error.svg'
+import errorImg from '../../../../public/error.svg'
 
 const CheckboxContainer = ({ children }: PropsWithChildren) => {
   return (

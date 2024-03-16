@@ -18,6 +18,7 @@ const config: Config = {
       errorLight: '#FEEFEF',
       input: '#09101D',
       inputFocus: '#B25300',
+      checkboxHover: '#CC5F00',
       placeholder: '#858C94',
       transparent: 'transparent',
     },
