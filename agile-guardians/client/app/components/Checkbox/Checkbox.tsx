@@ -12,13 +12,17 @@ const Checkbox = ({ value }: CheckboxProps) => {
     setIsClicked(!isClicked)
   }
   return (
-    <input
-      readOnly
-      type="text"
-      className="border-primary text-primary w-[100px] cursor-pointer rounded-[8px] border text-lg font-semibold"
+    <button
+      type="button"
+      className={
+        !isClicked
+          ? 'cursor-pointer rounded-3xl border border-primary px-5 py-2 text-lg font-semibold text-primary'
+          : 'cursor-pointer rounded-3xl border border-primary bg-primary px-5 py-2 text-lg font-semibold text-white '
+      }
       onClick={handleOnClick}
-      value={value}
-    />
+    >
+      {value}
+    </button>
   )
 }
 
