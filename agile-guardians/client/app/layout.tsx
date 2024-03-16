@@ -1,13 +1,14 @@
+import './globals.css'
 import type { Metadata } from 'next'
 import { Source_Sans_3 } from 'next/font/google'
-import './globals.css'
-import LogoHeader from './components/LohoHeader/LogoHeader'
+import LogoHeader from './components/LogoHeader/LogoHeader'
 
 const source_pro = Source_Sans_3({ subsets: ['latin'], weight: ['400', '600'] })
 
 export const metadata: Metadata = {
   title: 'AI pomocnik zakupów',
-  description: 'Nie trać czasu! Niech AI pomocnik zrobi zakupy za Ciebie!',
+  description:
+    'Szybko i wygodnie sprawdź oferty pod kątem manipulacji, ekologii lub jakości dzięki AI',
 }
 
 export default function RootLayout({

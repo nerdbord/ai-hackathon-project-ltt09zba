@@ -15,6 +15,7 @@ const config: Config = {
       tertiary: '#EEF2FA',
       background: '#F4F6F9',
       error: '#DA1414',
+      transparent: 'transparent',
     },
   },
   plugins: [],
