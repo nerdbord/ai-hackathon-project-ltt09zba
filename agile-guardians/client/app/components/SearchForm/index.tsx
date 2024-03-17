@@ -4,6 +4,8 @@ import Checkbox from './Checkbox'
 import CheckboxContainer from './CheckboxContainer'
 import { FormEvent, useState } from 'react'
 import TextInput from './TextInput'
+import searchImage from '../../../public/search.jpg'
+import Image from 'next/image'
 
 const SearchForm = () => {
   const [search, setSearch] = useState<string>('')
@@ -70,6 +72,13 @@ const SearchForm = () => {
           Sprawdź
         </button>
       </div>
+      <Image
+        src={searchImage}
+        width={612}
+        height={444}
+        alt="form image"
+        className="hidden w-[550px] overflow-hidden rounded-r-lg sm:block lg:w-auto"
+      />
     </form>
   )
 }
