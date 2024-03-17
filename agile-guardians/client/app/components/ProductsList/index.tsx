@@ -1,4 +1,5 @@
 import Product from './Product'
+import { v4 as uuid } from 'uuid'
 
 const dummyProps = {
   title: 'Horizontal Card with Image & Actions',
@@ -19,7 +20,7 @@ const ProductsList = () => {
       {Array.from({ length: 5 }, (_, index) => (
         <Product
           index={index}
-          key={index}
+          key={uuid()}
           title={dummyProps.title}
           img={dummyProps.img}
           ecology={dummyProps.ecology}
