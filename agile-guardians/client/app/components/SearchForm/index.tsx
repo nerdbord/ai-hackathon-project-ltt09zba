@@ -7,14 +7,20 @@ import TextInput from './TextInput'
 import searchImage from '../../../public/search.jpg'
 import Image from 'next/image'
 
-const SearchForm = () => {
+type Result = {
+  search: string
+  checkedBoxes: string[]
+}
+
+type SearchFormProps = {
+  setResult: (result: Result[]) => void
+}
+
+const SearchForm = ({ setResult }: SearchFormProps) => {
   const [search, setSearch] = useState<string>('')
   const [checkedBoxes, setCheckedBoxes] = useState<string[]>([])
   const [checkboxError, setCheckboxError] = useState(false)
   const [searchError, setSearchError] = useState(false)
-  const [result, setResult] = useState<
-    { search: string; checkedBoxes: string[] }[]
-  >([])
 
   const handleCheckboxChange = (value: string) => {
     setCheckedBoxes((prev) => {
@@ -43,8 +49,6 @@ const SearchForm = () => {
       setResult([{ search, checkedBoxes }])
     }
   }
-
-  console.log(result)
 
   return (
     <form

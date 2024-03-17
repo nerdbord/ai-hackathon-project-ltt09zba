@@ -10,16 +10,13 @@ example of passed body to req when invoking route handler:
 export async function POST(req: Request) {
   const url = 'https://training.nerdbord.io/api/v1/openai/chat/completions'
   const apiKey = process.env.OPENAI_API_KEY
-  const { message } = await req.json()
+  const result = await req.json()
+
+  return NextResponse.json(result)
 
   const requestData = {
     model: 'gpt-3.5-turbo',
-    messages: [
-      {
-        role: 'system',
-        content: message,
-      },
-    ],
+    content: `${messages}`,
   }
 
   try {

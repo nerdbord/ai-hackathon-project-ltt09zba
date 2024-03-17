@@ -1,5 +1,3 @@
-import Image from 'next/image'
-import searchImg from '../../../../public/search.jpg'
 import RecommendedBadge from '../RecommendedBadge'
 import Info from '../Info'
 import Link from 'next/link'
@@ -11,25 +9,24 @@ interface ProductProps {
   ecology?: string
   quality?: string
   index: number
-  url: string
 }
 
 const Product = ({
   title,
   manipulation,
+  img,
   ecology,
   quality,
   index,
-  url,
 }: ProductProps) => {
   return (
     <article className="flex flex-col rounded-lg bg-white shadow-md lg:flex-row">
-      <Image
-        src={searchImg}
+      <img
+        src={img || '/img/noImage.png'}
         alt="Product img"
         width="464"
         height="464"
-        className="rounded-t-lg sm:rounded-l-lg sm:rounded-r-none"
+        className="max-h-[464px] sm:min-w-[464px] rounded-t-lg sm:rounded-l-lg sm:rounded-r-none object-contain"
       />
       <div className="relative flex flex-col gap-2 p-4 sm:gap-3 sm:p-6">
         {index === 0 && <RecommendedBadge />}
@@ -38,7 +35,8 @@ const Product = ({
         {ecology && <Info title="Ekologia" content={ecology} />}
         {quality && <Info title="Jakość" content={quality} />}
         <Link
-          href={url}
+          rel="noopener noreferrer"
+          href="/"
           className="grid h-[36px] place-items-center rounded-md bg-primary text-sm text-white hover:bg-checkboxHover sm:w-[146px]"
         >
           Przejdź do produktu
