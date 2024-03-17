@@ -4,10 +4,12 @@ import Search from './components/SearchForm/SearchForm'
 
 export default function Home() {
   return (
-    <main className="ml-[120px] flex w-[1200px] flex-col gap-10 bg-transparent py-5">
+    <div className="mx-auto flex max-w-[1200px] flex-col gap-10 bg-transparent px-6 py-5">
       <Header />
-      <Search />
-      <ProductsList />
-    </main>
+      <main>
+        <Search />
+        <ProductsList />
+      </main>
+    </div>
   )
 }
