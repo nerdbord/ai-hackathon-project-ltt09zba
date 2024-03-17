@@ -31,7 +31,7 @@ const ProductsList = ({ result }: ProductsListProps) => {
 
   const slicedAllegroProducts = allegroProducts?.slice(0, 5)
 
-  const prompt = `Czy mozesz ocenic te 5 produktów na podstawie nazwy i opisu? ${slicedAllegroProducts?.map(({ description, name }, index) => `${index + 1}. Nazwa: ${name}, Opis: ${description || 'Brak opisu'}`)}. Pod względem: ${result?.[0]?.checkedBoxes?.join(' i ') || 'Brak parametrów'} w skali od 1-10 i odpowiedz w formie tablicy obiektów ukrytej w stringu, gdzie każdy obiekt będzie zawierał nazwę oraz uzasadnienie dla oceny pod względem każdego parametru oraz ocene ogólną produkt?`
+  const prompt = `Czy mozesz ocenic te 5 produktów na podstawie nazwy i opisu? ${slicedAllegroProducts?.map(({ description, name }, index) => `${index + 1}. Nazwa: ${name}, Opis: ${description || 'Brak opisu'}`)}. Pod względem: ${result?.[0]?.checkedBoxes?.join(' i ') || 'Brak parametrów'} w skali od 1-10 i odpowiedz w formie tablicy obiektów ukrytej w stringu, gdzie każdy obiekt będzie wyglądał w następujący sposób {nazwa: Tutaj dodaj nazwę produktu, ocena_produktu: tutaj dodaj ocenę produktu w skali od 1-10, manipulacja: tutaj dodaj opis a propos manipulacji, ekologia: tutaj dodaj opis a propos ekologii, jakość: tutaj dodaj opis a propos jakości }?`
 
   const {
     isLoading: loading,
@@ -41,9 +41,16 @@ const ProductsList = ({ result }: ProductsListProps) => {
     enabled: !!slicedAllegroProducts,
   })
 
-  console.log(chatgptData?.length > 0 && JSON.parse(chatgptData))
+  const va = chatgptData?.length > 0 && JSON.parse(chatgptData)
 
-  
+  let updatedChatgptData
+
+  if (Array.isArray(va)) {
+    updatedChatgptData = va.map((item, index) => {
+      const image = slicedAllegroProducts?.[index]?.images[0]
+      return { ...item, image }
+    })
+  }
 
   if (!result?.[0]?.search || !result?.[0]?.checkedBoxes.length) {
     return null
@@ -61,17 +68,20 @@ const ProductsList = ({ result }: ProductsListProps) => {
     return (
       <section className="flex flex-col gap-6 bg-transparent">
         <h3 className="text-[40px] font-semibold">Znalezione oferty</h3>
-        {chatgptData?.length > 0 && JSON.parse(chatgptData).map((element, index) => (
-          <Product
-            index={index}
-            key={uuid()}
-            title={element.Nazwa}//Nazwa
-            img={element.images?.[0]}
-            ecology={element?.Uzasadnienie_ekologia}// Uzasadnienie_ekologia
-            manipulation={element?.Uzasadnienie_manipulacja}//Uzasadnienie_manipulacja
-            quality={element?.Uzasadnienie_jakość}// Uzasadnienie_jakość
-          />
-        ))}
+        {updatedChatgptData
+          ?.sort((a, b) => b.ocena_produktu - a.ocena_produktu)
+          .map((element, index) => (
+            <Product
+              index={index}
+              key={uuid()}
+              rating={element.ocena_produktu}
+              title={element.nazwa}
+              img={element.image}
+              ecology={element.ekologia}
+              quality={element.jakość}
+              manipulation={element.manipulacja}
+            />
+          ))}
       </section>
     )
   }
