@@ -17,8 +17,8 @@ const Checkbox = ({ value }: CheckboxProps) => {
       type="button"
       className={
         !isClicked
-          ? 'hover:border-checktext-checkboxHover flex cursor-pointer rounded-3xl border border-primary px-5 py-2 text-lg font-semibold text-primary hover:text-checkboxHover active:border-inputFocus active:text-inputFocus '
-          : 'hover:border-checktext-checkboxHover flex cursor-pointer items-center rounded-3xl border border-primary bg-primary px-5 py-2 text-lg font-semibold text-white hover:text-white active:bg-inputFocus '
+          ? 'hover:border-checktext-checkboxHover flex cursor-pointer gap-1 rounded-3xl border border-primary px-4 py-2 font-semibold text-primary hover:text-checkboxHover active:border-inputFocus active:text-inputFocus md:text-lg xl:px-5 '
+          : 'hover:border-checktext-checkboxHover flex cursor-pointer items-center gap-1 rounded-3xl border border-primary bg-primary px-4 sm:px-5 py-2 md:text-lg font-semibold text-white hover:text-white active:bg-inputFocus '
       }
       onClick={handleOnClick}
     >
