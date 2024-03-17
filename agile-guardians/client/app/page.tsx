@@ -1,9 +1,6 @@
-import { Suspense } from 'react'
 import Header from './components/Header'
-import Loading from './components/Loading/Loading'
 import ProductsList from './components/ProductsList'
 import Search from './components/SearchForm'
-import Error from './components/Error/Error'
 
 export default function Home() {
   return (
@@ -11,9 +8,7 @@ export default function Home() {
       <Header />
       <main className="space-y-8 md:space-y-16">
         <Search />
-        <Suspense fallback={<Loading />}>
-          <ProductsList />
-        </Suspense>
+        <ProductsList />
       </main>
     </div>
   )
