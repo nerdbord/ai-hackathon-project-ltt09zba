@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import search from '../../../public/search.jpg'
-import TextInput from './TextInput/TextInput'
-import Checkbox from './Checkbox/Checkbox'
-import CheckboxContainer from './CheckboxContainer/CheckboxContainer'
+import TextInput from './TextInput'
+import Checkbox from './Checkbox'
+import CheckboxContainer from './CheckboxContainer'
 
 const SearchForm = () => {
   return (

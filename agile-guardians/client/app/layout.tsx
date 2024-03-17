@@ -1,7 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Source_Sans_3 } from 'next/font/google'
-import LogoHeader from './components/LogoHeader/LogoHeader'
+import LogoHeader from './components/LogoHeader'
 
 const source_pro = Source_Sans_3({ subsets: ['latin'], weight: ['400', '600'] })
 

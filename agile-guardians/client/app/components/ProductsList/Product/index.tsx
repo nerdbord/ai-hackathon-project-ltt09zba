@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import searchImg from '../../../../public/search.jpg'
 import CloseButton from './CloseButton'
-import RecommendedBadge from '../RecommendedBadge/RecommendedBadge'
-import Info from '../Info/Info'
+import RecommendedBadge from '../RecommendedBadge'
+import Info from '../Info'
 import Link from 'next/link'
 
 interface ProductProps {

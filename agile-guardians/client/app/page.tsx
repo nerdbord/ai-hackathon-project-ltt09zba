@@ -1,6 +1,6 @@
-import Header from './components/Header/Header'
-import ProductsList from './components/ProductsList/ProductsList'
-import Search from './components/SearchForm/SearchForm'
+import Header from './components/Header'
+import ProductsList from './components/ProductsList'
+import Search from './components/SearchForm'
 
 export default function Home() {
   return (

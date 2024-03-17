@@ -1,4 +1,4 @@
-import Product from './Product/Product'
+import Product from './Product'
 
 const dummyProps = {
   title: 'Horizontal Card with Image & Actions',
