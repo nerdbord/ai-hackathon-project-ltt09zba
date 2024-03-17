@@ -9,6 +9,7 @@ interface ProductProps {
   ecology?: string
   quality?: string
   index: number
+  rating?: string
 }
 
 const Product = ({
@@ -18,6 +19,7 @@ const Product = ({
   ecology,
   quality,
   index,
+  rating
 }: ProductProps) => {
   return (
     <article className="flex flex-col rounded-lg bg-white shadow-md lg:flex-row">
@@ -29,6 +31,7 @@ const Product = ({
         className="max-h-[464px] sm:min-w-[464px] rounded-t-lg sm:rounded-l-lg sm:rounded-r-none object-contain"
       />
       <div className="relative flex flex-col gap-2 p-4 sm:gap-3 sm:p-6">
+        {rating && <span>Ocena_ogólna: {rating}</span>}
         {index === 0 && <RecommendedBadge />}
         <h4 className="text-lg font-semibold sm:text-2xl ">{title}</h4>
         {manipulation && <Info title="Manipulacja" content={manipulation} />}

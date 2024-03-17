@@ -29,27 +29,21 @@ const ProductsList = ({ result }: ProductsListProps) => {
     isError,
   } = useQuery(['allegro-products', result?.[0]?.search], getAllegroProducts)
 
-  console.log(allegroProducts?.slice(0, 5))
-
-  const criteria = {
-    manipulacja: result?.[0]?.checkedBoxes.includes('manipulacja'),
-    ekologia: result?.[0]?.checkedBoxes.includes('ekologia'),
-    jakość: result?.[0]?.checkedBoxes.includes('jakość'),
-  }
-
   const slicedAllegroProducts = allegroProducts?.slice(0, 5)
+
+  const prompt = `Czy mozesz ocenic te 5 produktów na podstawie nazwy i opisu? ${slicedAllegroProducts?.map(({ description, name }, index) => `${index + 1}. Nazwa: ${name}, Opis: ${description || 'Brak opisu'}`)}. Pod względem: ${result?.[0]?.checkedBoxes?.join(' i ') || 'Brak parametrów'} w skali od 1-10 i odpowiedz w formie tablicy obiektów ukrytej w stringu, gdzie każdy obiekt będzie zawierał nazwę oraz uzasadnienie dla oceny pod względem każdego parametru oraz ocene ogólną produkt?`
 
   const {
     isLoading: loading,
     data: chatgptData,
     isError: error,
-  } = useQuery(
-    ['chatgpt', { slicedAllegroProducts, criteria }],
-    getChatGptResponses,
-    { enabled: !!slicedAllegroProducts }
-  )
+  } = useQuery(['chatgpt', prompt], getChatGptResponses, {
+    enabled: !!slicedAllegroProducts,
+  })
 
-  console.log(chatgptData)
+  console.log(chatgptData?.length > 0 && JSON.parse(chatgptData))
+
+  
 
   if (!result?.[0]?.search || !result?.[0]?.checkedBoxes.length) {
     return null
@@ -63,19 +57,19 @@ const ProductsList = ({ result }: ProductsListProps) => {
     return <p>Wystąpił błąd</p>
   }
 
-  if (slicedAllegroProducts) {
+  if (chatgptData.length > 0) {
     return (
       <section className="flex flex-col gap-6 bg-transparent">
         <h3 className="text-[40px] font-semibold">Znalezione oferty</h3>
-        {slicedAllegroProducts.map((element, index) => (
+        {chatgptData?.length > 0 && JSON.parse(chatgptData).map((element, index) => (
           <Product
             index={index}
             key={uuid()}
-            title={element.name}
+            title={element.Nazwa}//Nazwa
             img={element.images?.[0]}
-            ecology={dummyProps.ecology}
-            manipulation={dummyProps.manipulation}
-            quality={dummyProps.quality}
+            ecology={element?.Uzasadnienie_ekologia}// Uzasadnienie_ekologia
+            manipulation={element?.Uzasadnienie_manipulacja}//Uzasadnienie_manipulacja
+            quality={element?.Uzasadnienie_jakość}// Uzasadnienie_jakość
           />
         ))}
       </section>

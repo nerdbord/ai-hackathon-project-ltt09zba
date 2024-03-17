@@ -10,7 +10,6 @@ export const getAllegroProducts = async ({ queryKey }: any) => {
   await wait(500)
 
   const [key, search] = queryKey
-  console.log('search', search)
 
   const res = await fetch(
     `http://localhost:3000/search-products?phrase=${search}`
