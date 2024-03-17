@@ -5,12 +5,14 @@ import ApprovedIcon from './ApprovedIcon'
 
 interface CheckboxProps {
   value: string
+  onChange: (value: string) => void
 }
 
-const Checkbox = ({ value }: CheckboxProps) => {
+const Checkbox = ({ value, onChange }: CheckboxProps) => {
   const [isClicked, setIsClicked] = useState(false)
   const handleOnClick = () => {
     setIsClicked(!isClicked)
+    onChange(value)
   }
   return (
     <button
