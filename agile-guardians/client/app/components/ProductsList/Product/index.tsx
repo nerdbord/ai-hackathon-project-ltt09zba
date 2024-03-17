@@ -1,5 +1,3 @@
-import Image from 'next/image'
-import searchImg from '../../../../public/search.jpg'
 import RecommendedBadge from '../RecommendedBadge'
 import Info from '../Info'
 import Link from 'next/link'
@@ -11,34 +9,37 @@ interface ProductProps {
   ecology?: string
   quality?: string
   index: number
-  url: string
+  rating?: string
 }
 
 const Product = ({
   title,
   manipulation,
+  img,
   ecology,
   quality,
   index,
-  url,
+  rating
 }: ProductProps) => {
   return (
     <article className="flex flex-col rounded-lg bg-white shadow-md lg:flex-row">
-      <Image
-        src={searchImg}
+      <img
+        src={img || '/img/noImage.png'}
         alt="Product img"
         width="464"
         height="464"
-        className="rounded-t-lg sm:rounded-l-lg sm:rounded-r-none"
+        className="max-h-[464px] sm:min-w-[464px] rounded-t-lg sm:rounded-l-lg sm:rounded-r-none object-contain"
       />
       <div className="relative flex flex-col gap-2 p-4 sm:gap-3 sm:p-6">
+        {rating && <span>Ocena_ogólna: {rating}</span>}
         {index === 0 && <RecommendedBadge />}
         <h4 className="text-lg font-semibold sm:text-2xl ">{title}</h4>
         {manipulation && <Info title="Manipulacja" content={manipulation} />}
         {ecology && <Info title="Ekologia" content={ecology} />}
         {quality && <Info title="Jakość" content={quality} />}
         <Link
-          href={url}
+          rel="noopener noreferrer"
+          href="/"
           className="grid h-[36px] place-items-center rounded-md bg-primary text-sm text-white hover:bg-checkboxHover sm:w-[146px]"
         >
           Przejdź do produktu

@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Source_Sans_3 } from 'next/font/google'
 import LogoHeader from './components/LogoHeader'
+import ReactQueryClientProvider from './components/ReactQueryClientProvider'
 
 const source_pro = Source_Sans_3({ subsets: ['latin'], weight: ['400', '600'] })
 
@@ -17,11 +18,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pl">
-      <body className={`${source_pro.className} bg-background pb-5`}>
-        <LogoHeader />
-        {children}
-      </body>
-    </html>
+    <ReactQueryClientProvider>
+      <html lang="pl">
+        <body className={`${source_pro.className} bg-background pb-5`}>
+          <LogoHeader />
+          {children}
+        </body>
+      </html>
+    </ReactQueryClientProvider>
   )
 }
