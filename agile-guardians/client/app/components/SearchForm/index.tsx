@@ -6,8 +6,8 @@ import CheckboxContainer from './CheckboxContainer'
 
 const SearchForm = () => {
   return (
-    <form className="flex justify-between bg-white rounded-lg shadow-md">
-      <div className="mx-auto rounded-l-lg flex flex-col gap-3 bg-white px-4 sm:px-6 py-5 sm:mx-0">
+    <form className="flex justify-between rounded-lg bg-white shadow-md">
+      <div className="mx-auto flex flex-col gap-3 rounded-l-lg bg-white px-4 py-5 sm:mx-0 sm:px-6">
         <h3 className="text-3xl font-semibold xl:text-4xl">Sprawdź oferty</h3>
         <TextInput />
         <CheckboxContainer>
@@ -27,7 +27,7 @@ const SearchForm = () => {
         width={612}
         height={444}
         alt="form image"
-        className='hidden sm:block rounded-r-lg w-[550px] overflow-hidden lg:w-auto'
+        className="hidden w-[550px] overflow-hidden rounded-r-lg sm:block lg:w-auto"
       />
     </form>
   )
