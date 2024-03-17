@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
-const qs = require('qs');
 const he = require('he');
 
 const CLIENT_ID = process.env.CLIENT_ID;
@@ -10,10 +9,7 @@ const REDIRECT_URI = process.env.REDIRECT_URI;
 
 let globalAccessToken = null;
 
-const productID = '58bc5a0a-ae03-4f24-91a8-fcb63ea571b7'; // Example product ID
-
 router.get('/', (req, res) => {
-    // Check if globalAccessToken is already set
     if (globalAccessToken) {
         res.send('You are already authenticated. Welcome to the application!');
     } else {
@@ -41,7 +37,6 @@ router.get('/callback', async (req, res) => {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
         });
-
 
         accessToken = response.data.access_token;
         globalAccessToken = accessToken;
@@ -72,18 +67,16 @@ router.get('/search-products', async (req, res) => {
           'Accept': 'application/vnd.allegro.public.v1+json'
         },
         params: {
-          phrase: phrase
-          // Add other parameters if necessary
+          phrase: phrase,
+          language: 'pl-PL'
         }
       });
   
-      // Check if the response has products
       if (response.data && response.data.products) {
-        const simplifiedProducts = response.data.products.map(product => {
-          // Assuming 'description' is provided as a simple string. Adjust this path based on the actual structure.
+        const limitedProducts = response.data.products.slice(0, 5);
+        const simplifiedProducts = limitedProducts.map(product => {
           let description = '';
           if (product.description && product.description.sections) {
-            // Concatenate all text content from the description sections
             description = product.description.sections.map(section => 
               section.items.map(item => 
                 item.type === 'TEXT' ? item.content : ''
@@ -99,11 +92,10 @@ router.get('/search-products', async (req, res) => {
             return {
               name: product.name,
               description: description,
-              images: imageUrls // Add this line to include the images array in the response
+              images: imageUrls
             };
         });
   
-        // Send back the simplified product information
         res.json(simplifiedProducts);
       } else {
         res.status(404).send('No products found or the structure of the response has changed.');

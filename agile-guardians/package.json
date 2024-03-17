@@ -3,7 +3,8 @@
     "concurrently": "^8.2.2"
   },
   "scripts": {
-    "start:both": "concurrently \"cd client && npm run dev\" \"cd server && node app.js\""
+    "start:both": "concurrently \"cd client && npm run dev\" \"cd server && node app.js\"",
+    "start:api":  "cd server && node app.js\""
   }
 }
 
