@@ -17,7 +17,7 @@ const Info = ({ title, content }: InfoProps) => {
       >
         {title}
       </div>
-      <p className="text-[13px] leading-5">{content}</p>
+      <p className="text-[13px] leading-5 line-clamp-3">{content}</p>
     </div>
   )
 }
